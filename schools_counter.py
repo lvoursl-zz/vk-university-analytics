@@ -27,28 +27,24 @@ with open('data_spbgu_bigget_group.json', 'r', encoding = 'cp1251') as data_file
 				line = '' + line[1:]
 				line = line[:len(line) - 2] + ''
 
-				#data = json.loads(json.dumps(line), strict=False)
-				#print(type(data))
 				data = ast.literal_eval(line)
 				
-				if 'schools' in data:
-					#print(data['schools'])
+				if 'schools' in data:		
+					
 					str_school_data = str(data['schools'])
+					
 					if len(str_school_data) > 3 : 
-						#print(str_school_data)
+						
 						str_school_data = '' + str_school_data[1:]
 						str_school_data = str_school_data[:len(str_school_data) - 1] + ''
-						school_data = ast.literal_eval(str_school_data)
-						#print(str(type(school_data)))
+						school_data = ast.literal_eval(str_school_data)					
 
-						if type(school_data) is dict:					
-							#print(school_data['name'])
+						if type(school_data) is dict:												
 							add_school(school_data['name'])
 						elif type(school_data) is tuple:
 							# если школы пользователей образовали кортеж, значит их несколько
 							school_data_list = list(school_data)
-							for school in school_data_list:
-								#print(school['name'])
+							for school in school_data_list:								
 								add_school(school['name'])
 	except Exception as e:
 		print(str(e))
